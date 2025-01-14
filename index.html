@@ -2,10 +2,406 @@
 <html lang="en">
     <head>
         <meta charset="UTF-8" />
+        <title>Popzy.js: A 2kB Vanilla JavaScript Modal Library</title>
+        <meta
+            name="description"
+            content="Popzy.js is a lightweight and user-friendly modal library written in pure JavaScript. It is designed for great user experience (2kB, no dependencies, fully customizable with CSS)."
+        />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Popzy</title>
+        <link
+            rel="stylesheet"
+            href="./assets/highlight/styles.css"
+            media="all"
+        />
+        <link rel="stylesheet" href="./assets/styles.css" media="all" />
+        <link rel="shortcut icon" href="./favicon.ico" type="image/x-icon" />
     </head>
     <body>
-        <h1>Popzy</h1>
+        <!-- HEADER -->
+        <header class="header">
+            <div class="container">
+                <h1 class="header__title">Popzy.js</h1>
+                <div class="header__tagline">
+                    A lightweight and simple modal library built with pure
+                    JavaScript.
+                </div>
+                <a
+                    href="https://github.com/sondnpt00343/popzy"
+                    class="header__github"
+                    target="_blank"
+                    ><img src="./assets/github.svg" alt="View on GitHub"
+                /></a>
+            </div>
+        </header>
+        <!-- /HEADER -->
+
+        <!-- CONTAINER -->
+        <div class="container content">
+            <h2 data-bullet="1" class="title" id="try-it-out">Try It Out</h2>
+            <p>
+                Popzy is a lightweight <strong>modal library</strong> built with
+                pure JavaScript. (<a
+                    href="https://github.com/sondnpt00343/popzy"
+                    >Source code available on GitHub</a
+                >)
+            </p>
+
+            <ul>
+                <li>No dependencies</li>
+                <li>Fully customizable with CSS</li>
+                <li>Supports CSS transitions</li>
+                <li>Simple and intuitive API</li>
+                <li>No extra files needed</li>
+                <li>Optimized for user experience</li>
+            </ul>
+
+            <p>Here are some examples of how to use Popzy:</p>
+
+            <button class="btn btn--primary btn-demo js-popzy-modal-1">
+                Basic Modal
+            </button>
+            <button class="btn btn--secondary btn-demo js-popzy-modal-2">
+                Modal with Buttons
+            </button>
+            <button class="btn btn--secondary btn-demo js-popzy-modal-3">
+                Large Content Modal
+            </button>
+            <button class="btn btn--secondary btn-demo js-popzy-modal-5">
+                Footer-Only Close Modal
+            </button>
+            <button class="btn btn--secondary btn-demo js-popzy-modal-6">
+                Persistent Modal (Stays in DOM)
+            </button>
+            <button class="btn btn--secondary btn-demo js-popzy-modal-7">
+                Multiple Modals
+            </button>
+            <button class="btn btn--secondary btn-demo js-popzy-modal-4">
+                YouTube Embed Modal
+            </button>
+
+            <h2 data-bullet="2" class="title" id="installation">
+                Installation
+            </h2>
+            <table class="methods">
+                <thead>
+                    <tr>
+                        <th>Method</th>
+                        <th class="w60">Steps</th>
+                    </tr>
+                </thead>
+                <tr>
+                    <td>Direct Download</td>
+                    <td>
+                        <a
+                            href="https://github.com/sondnpt00343/popzy/archive/master.zip"
+                            title="Download Popzy"
+                        >
+                            Download ZIP
+                        </a>
+                        <p>
+                            Simply extract the ZIP file and use the
+                            <code>popzy.min.js</code> and
+                            <code>popzy.min.css</code> files in your project.
+                        </p>
+                    </td>
+                </tr>
+            </table>
+            <p>
+                Popzy provides a small CSS file that you can include directly
+                via a CDN link. This makes it easy to integrate into your
+                project and customize as needed.
+            </p>
+
+            <p>Include the Popzy JavaScript file in your project:</p>
+
+            <pre
+                class="html"
+            ><code>&lt;script src=&quot;https://cdn.jsdelivr.net/gh/sondnpt00343/popzy/popzy.min.js&quot;&gt;&lt;/script&gt;</code></pre>
+
+            <p>Optionally, include the Popzy CSS file for default styling:</p>
+
+            <pre class="html"><code>&lt;link
+    rel=&quot;stylesheet&quot;
+    href=&quot;https://cdn.jsdelivr.net/gh/sondnpt00343/popzy/popzy.min.css&quot;
+&gt;</code></pre>
+
+            <p>
+                You can explore the list of CSS classes used by Popzy in the
+                <a href="#styling">Styling</a> section to easily customize them
+                as needed.
+            </p>
+
+            <h2 data-bullet="3" class="title" id="usage">Usage</h2>
+            <pre class="javascript"><code>// Initialize a new modal
+const modal = new Popzy({
+    content: '&lt;h1&gt;This is content&lt;/h1&gt;',
+    // templateId: 'my-modal-template',
+    footer: true,
+    destroyOnClose: false,
+    closeMethods: ['overlay', 'button', 'escape'],
+    cssClass: ['custom-class-1', 'custom-class-2'],
+    onOpen: function() {
+        console.log('Modal opened');
+    },
+    onClose: function() {
+        console.log('Modal closed');
+    },
+});
+
+// Set modal content
+modal.setContent('&lt;h1&gt;This is new content&lt;/h1&gt;');
+
+// Add footer buttons
+modal.addFooterBtn('Cancel', 'btn btn--default', function(e) {
+    modal.close();
+});
+
+modal.addFooterBtn('Confirm', 'btn btn--primary', function(e) {
+    modal.close();
+});
+
+// Open the modal
+modal.open();
+
+// Close the modal
+modal.close();</code></pre>
+
+            <p>
+                If you use <code>templateId</code>, ensure that a
+                <code>&lt;template&gt;</code> element with the corresponding
+                <code>id</code> exists in your HTML. Below is an example:
+            </p>
+
+            <pre class="html">
+<code>&lt;template id="my-modal-template"&gt;
+    &lt;div&gt;
+        &lt;h1&gt;This is modal content&lt;/h1&gt;
+        &lt;p&gt;You can add any HTML here.&lt;/p&gt;
+    &lt;/div&gt;
+&lt;/template&gt;
+</code>
+</pre>
+            <p>
+                <strong>Note:</strong> When using <code>templateId</code>, do
+                not provide <code>content</code>. If both are specified,
+                <code>content</code> will take precedence, and
+                <code>templateId</code> will be ignored.
+            </p>
+
+            <h2 data-bullet="4" class="title" id="options">Options</h2>
+            <table class="methods">
+                <thead>
+                    <tr>
+                        <th>Option</th>
+                        <th>Type</th>
+                        <th class="w60">Description</th>
+                    </tr>
+                </thead>
+                <tr>
+                    <td>content, templateId</td>
+                    <td>string</td>
+                    <td>
+                        One of <code>content</code> or
+                        <code>templateId</code> is required to set the modal
+                        content. <code>content</code> accepts an HTML string,
+                        while <code>templateId</code> specifies the ID of a
+                        template element. If both are provided,
+                        <code>content</code> will take precedence.
+                    </td>
+                </tr>
+                <tr>
+                    <td>footer</td>
+                    <td>boolean</td>
+                    <td>
+                        Shows a footer in the modal (default:
+                        <code>false</code>)
+                    </td>
+                </tr>
+                <tr>
+                    <td>destroyOnClose</td>
+                    <td>boolean</td>
+                    <td>
+                        Decides whether the modal is removed from the DOM upon
+                        closing (default: <code>true</code>)
+                    </td>
+                </tr>
+                <tr>
+                    <td>closeMethods</td>
+                    <td>array</td>
+                    <td>
+                        Defines methods to close the modal (default:
+                        <code>['overlay', 'button', 'escape']</code>)
+                    </td>
+                </tr>
+                <tr>
+                    <td>onOpen</td>
+                    <td>function</td>
+                    <td>
+                        Callback function executed when the modal opens (after
+                        transition ends) (default: <code>undefined</code>)
+                    </td>
+                </tr>
+                <tr>
+                    <td>onClose</td>
+                    <td>function</td>
+                    <td>
+                        Callback function executed when the modal closes
+                        (default: <code>undefined</code>)
+                    </td>
+                </tr>
+                <tr>
+                    <td>cssClass</td>
+                    <td>array</td>
+                    <td>
+                        Custom CSS classes applied to the modal container
+                        (default: <code>[]</code>)
+                    </td>
+                </tr>
+            </table>
+
+            <!-- Styling section -->
+            <h2 data-bullet="5" class="title" id="styling">Styling</h2>
+            <p>
+                Popzy styles are defined in CSS, with some positioning handled
+                by JavaScript. You can fully customize it to meet your design
+                requirements.
+            </p>
+
+            <table class="methods">
+                <thead>
+                    <tr>
+                        <th>Class Name</th>
+                        <th style="width: 70%">Description/Role</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><code>.popzy</code></td>
+                        <td>
+                            Styles the backdrop overlay for the modal. Handles
+                            positioning, centering the modal, and applying a
+                            semi-transparent background.
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><code>.popzy--show</code></td>
+                        <td>
+                            Applied when the modal is visible. Controls the
+                            visibility and opacity of the backdrop.
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><code>.popzy__container</code></td>
+                        <td>
+                            Styles the modal container, including its size,
+                            padding, border-radius, and transform animations for
+                            scaling in/out.
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><code>.popzy__close</code></td>
+                        <td>
+                            Styles the close button inside the modal, including
+                            its size, position, and hover effects.
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><code>.popzy__content</code></td>
+                        <td>
+                            Handles the modal's main content area, including
+                            scrollable behavior with a maximum height.
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><code>.popzy__footer</code></td>
+                        <td>
+                            Styles the modal footer, aligning buttons to the
+                            right and adding spacing between them.
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><code>.popzy--no-scroll</code></td>
+                        <td>
+                            Disables scrolling on the body when the modal is
+                            open.
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <p>
+                For more details, you can view the full CSS file directly here:
+                <a
+                    href="https://github.com/sondnpt00343/popzy/blob/main/src/popzy.css"
+                    target="_blank"
+                    >popzy.css</a
+                >.
+            </p>
+
+            <!-- API section -->
+            <h2 data-bullet="6" class="title" id="api">API</h2>
+            <table class="methods">
+                <thead>
+                    <tr>
+                        <th>Method</th>
+                        <th class="w60">Description</th>
+                    </tr>
+                </thead>
+                <tr>
+                    <td>open()</td>
+                    <td>
+                        Opens the modal and triggers the
+                        <code>onOpen</code> callback.
+                    </td>
+                </tr>
+                <tr>
+                    <td>close()</td>
+                    <td>
+                        Closes the modal and triggers the
+                        <code>onClose</code> callback.
+                    </td>
+                </tr>
+                <tr>
+                    <td>setContent(content)</td>
+                    <td>Updates the modal content</td>
+                </tr>
+                <tr>
+                    <td>setFooterContent(content)</td>
+                    <td>Updates the footer content</td>
+                </tr>
+                <tr>
+                    <td>addFooterBtn(label, cssClass, callback)</td>
+                    <td>
+                        Adds a button to the footer with a callback function
+                    </td>
+                </tr>
+                <tr>
+                    <td>destroy()</td>
+                    <td>Removes the modal and unbinds all events</td>
+                </tr>
+            </table>
+
+            <footer class="footer">
+                <p>
+                    This is a small project included in the "Practice with DOM"
+                    section of the JavaScript Pro course.
+                </p>
+                <p>
+                    Learn more at
+                    <a
+                        href="https://fullstack.edu.vn/landing/javascript"
+                        target="_blank"
+                    >
+                        JavaScript Pro</a
+                    >.
+                </p>
+            </footer>
+        </div>
+        <!-- /CONTAINER -->
+
+        <script src="./assets/highlight/highlight.js"></script>
+        <script>
+            hljs.initHighlightingOnLoad();
+        </script>
     </body>
 </html>
