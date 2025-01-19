@@ -211,6 +211,14 @@ modal.close();</code></pre>
                     </td>
                 </tr>
                 <tr>
+                    <td>cssClass</td>
+                    <td>array</td>
+                    <td>
+                        Custom CSS classes applied to the modal container
+                        (default: <code>[]</code>)
+                    </td>
+                </tr>
+                <tr>
                     <td>footer</td>
                     <td>boolean</td>
                     <td>
@@ -235,11 +243,32 @@ modal.close();</code></pre>
                     </td>
                 </tr>
                 <tr>
+                    <td>enableScrollLock</td>
+                    <td>boolean</td>
+                    <td>
+                        Enables or disables scroll locking when the modal is
+                        open. When set to
+                        <code>true</code>, it prevents scrolling on the target
+                        element specified by <code>scrollLockTarget</code>.
+                        Default: <code>true</code>.
+                    </td>
+                </tr>
+                <tr>
+                    <td>scrollLockTarget</td>
+                    <td>function</td>
+                    <td>
+                        A callback that returns the element to apply scroll
+                        locking on. By default, it locks scrolling on
+                        <code>document.body</code>.
+                    </td>
+                </tr>
+                <tr>
                     <td>onOpen</td>
                     <td>function</td>
                     <td>
                         Callback function executed when the modal opens (after
-                        transition ends) (default: <code>undefined</code>)
+                        transition ends) (default:
+                        <code>undefined</code>)
                     </td>
                 </tr>
                 <tr>
@@ -248,14 +277,6 @@ modal.close();</code></pre>
                     <td>
                         Callback function executed when the modal closes
                         (default: <code>undefined</code>)
-                    </td>
-                </tr>
-                <tr>
-                    <td>cssClass</td>
-                    <td>array</td>
-                    <td>
-                        Custom CSS classes applied to the modal container
-                        (default: <code>[]</code>)
                     </td>
                 </tr>
             </table>
@@ -407,7 +428,18 @@ modal.close();</code></pre>
             hljs.initHighlightingOnLoad();
 
             // Modal samples
-            // Updating...
+
+            // Basic Modal
+            const modal1Btn = document.querySelector(".js-popzy-modal-1");
+            const modal1 = new Popzy({
+                content: `
+                    <h1>Basic Modal</h1>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nihil cumque adipisci mollitia voluptatibus explicabo non perspiciatis eaque sed qui. Est.</p>
+                `,
+            });
+            modal1Btn.onclick = () => {
+                modal1.open();
+            };
         </script>
     </body>
 </html>

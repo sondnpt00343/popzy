@@ -1,6 +1,7 @@
-.popzy__backdrop {
+.popzy {
     position: fixed;
     inset: 0;
+    z-index: 9999;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -23,7 +24,7 @@
 .popzy__container {
     position: relative;
     width: min(600px, 90%);
-    padding: 20px 20px 0;
+    padding: 20px;
     border-radius: 6px;
     background: #fff;
     transform: scale(0.5);
@@ -40,10 +41,13 @@
     color: #666;
     background: #ebebeb;
     font-size: 2rem;
+    border: none;
+    outline: none;
 }
 
 .popzy__close:hover {
     color: #333;
+    cursor: pointer;
 }
 
 .popzy__content {
@@ -55,7 +59,7 @@
     display: flex;
     justify-content: flex-end;
     gap: 8px;
-    padding: 20px 0;
+    padding-top: 20px;
 }
 
 .popzy--no-scroll {
