@@ -180,6 +180,13 @@ Popzy.prototype.open = function () {
 };
 
 Popzy.prototype._hasScrollbar = (target) => {
+    if ([document.documentElement, document.body].includes(target)) {
+        return (
+            document.documentElement.scrollHeight >
+                document.documentElement.clientHeight ||
+            document.body.scrollHeight > document.body.clientHeight
+        );
+    }
     return target.scrollHeight > target.clientHeight;
 };
 
